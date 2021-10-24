@@ -9300,6 +9300,10 @@ static void op_handle_usb_removal(struct smb_charger *chg)
 	chg->ck_unplug_count = 0;
 	chg->count_run = 0;
 	chg->chg_disabled = 0;
+#ifdef CONFIG_FORCE_FAST_CHARGE
+	chg->ffc_count = 0;
+	set_sdp_current(chg, USBIN_500MA);
+#endif
 	chg->qc_configed = false;
 	chg->qc2_uv_count = 0;
 	chg->fastchg_switch_disable = false;
